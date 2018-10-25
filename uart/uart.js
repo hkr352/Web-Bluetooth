@@ -28,7 +28,7 @@ function connect () {
       return device.gatt.connect();
     })
     .then(server => {
-        return server.getPrimaryService(SERVICE_UUID
+        return server.getPrimaryService(SERVICE_UUID);
         /*
         server.getPrimaryService(SERVICE_UUID)
           .then(service => {
