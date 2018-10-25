@@ -1,9 +1,9 @@
 /* define Parameters **************************************************/
 const DEVICE_NAME_PREFIX = 'PLEN2'//'BBC micro:bit'
-const MAGNETOMETER_SERVICE_UUID = 'E1F40469-CFE1-43C1-838D-DDBC9DAFDDE6'
-const    MAGNETOMETER_DATA_UUID = 'e95dfb11-251d-470a-a062-fa1922dfa9a8'
-const  MAGNETOMETER_PERIOD_UUID = 'e95d386c-251d-470a-a062-fa1922dfa9a8'
-const MAGNETOMETER_COMPASS_UUID = 'e95d9715-251d-470a-a062-fa1922dfa9a8'
+//const MAGNETOMETER_SERVICE_UUID = 'E1F40469-CFE1-43C1-838D-DDBC9DAFDDE6'
+//const    MAGNETOMETER_DATA_UUID = 'e95dfb11-251d-470a-a062-fa1922dfa9a8'
+//const  MAGNETOMETER_PERIOD_UUID = 'e95d386c-251d-470a-a062-fa1922dfa9a8'
+//const MAGNETOMETER_COMPASS_UUID = 'e95d9715-251d-470a-a062-fa1922dfa9a8'
 // micro:bit ボタンサービス
 const BUTTON_SERVICE_UUID = 'e95d9882-251d-470a-a062-fa1922dfa9a8'
 // micro:bit ボタンAキャラクタリスティック
@@ -137,3 +137,4 @@ function onButtonBChanged (event) {
   console.log('ButtonB:' + status)
   document.js.buttonB.value = status
 }
+
