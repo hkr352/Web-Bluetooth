@@ -9,7 +9,7 @@ const UART_RX_SERVICE_CHARACTERISTICS ='6e400003-b5a3-f393-e0a9-e50e24dcca9e';
 //'E1F40469-CFE1-43C1-838D-DDBC9DAFDDE6'
 
 const SERVICE_UUID = UART_SERVICE;
-const CHARACTERISTIC_UUID_1 = UART_RX_SERVICE_CHARACTERISTICS;
+const CHARACTERISTIC_UUID_1 = UART_TX_SERVICE_CHARACTERISTICS;
 
 let characteristic;
 let connectDevice;
@@ -69,13 +69,4 @@ function onCharacteristicValueChanged(e) {
     }
     var str=String.fromCharCode.apply(null,str_arr);
     alert("msg:"+str);
-}
-
-function disconnect() {
-    if((!accelerometer_device)||(!accelerometer_device.gatt.connected)){
-        return;
-    }else{
-        accelerometer_device.gatt.disconnect();
-        alert("BLE disconnected");
-    }
 }
