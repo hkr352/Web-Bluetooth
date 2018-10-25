@@ -35,8 +35,8 @@ function connect () {
     .then(chara => {
         alert("BLE connected");
         characteristic=chara;
-        //characteristic.startNotifications();
-        //characteristic.addEventListener('characteristicvaluechanged',onCharacteristicValueChanged);
+        characteristic.startNotifications();
+        characteristic.addEventListener('characteristicvaluechanged',onCharacteristicValueChanged);
     })
     .catch(error => {
         alert("BLE error");
@@ -44,7 +44,8 @@ function connect () {
 }
 
 function post () {
-	characteristic.writeValue(new Uint8Array([1]));
+	//characteristic.writeValue(new Uint8Array([1]));
+  characteristic.writeValue("neko");
 	console.log("送信したはず");
 }
 
@@ -58,4 +59,23 @@ function disconnect () {
 function postDisconnect () {
   document.js.buttonA.value = ''
   document.js.buttonB.value = ''
+}
+
+
+function onCharacteristicValueChanged(e) {
+    var str_arr=[];
+    for(var i=0;i<this.value.byteLength;i++){
+        str_arr[i]=this.value.getUint8(i);
+    }
+    var str=String.fromCharCode.apply(null,str_arr);
+    alert("msg:"+str);
+}
+
+function disconnect() {
+    if((!accelerometer_device)||(!accelerometer_device.gatt.connected)){
+        return;
+    }else{
+        accelerometer_device.gatt.disconnect();
+        alert("BLE disconnected");
+    }
 }
