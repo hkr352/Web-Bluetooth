@@ -1,7 +1,7 @@
 //uart.js
 const DEVICE_NAME = 'BBC micro:bit';
 
-const UART_SERVICE                 ='6e400001-b5a3-f393-e0a9-e50e24dcca9e';
+const UART_SERVICE                    ='6e400001-b5a3-f393-e0a9-e50e24dcca9e';
 const UART_TX_SERVICE_CHARACTERISTICS ='6e400002-b5a3-f393-e0a9-e50e24dcca9e';
 const UART_RX_SERVICE_CHARACTERISTICS ='6e400003-b5a3-f393-e0a9-e50e24dcca9e';
 
@@ -24,12 +24,15 @@ function connect () {
     .then(device => {
       connectDevice = device;
       console.log('device', device);
+      alert("device error");
       return device.gatt.connect();
     })
     .then(server => {
-        return server.getPrimaryService(UART_SERVICE);
+      alert("server error");
+        return server.getPrimaryService(SERVICE_UUID);
     })
     .then(service => {
+        alert("service error");
         return service.getCharacteristic(CHARACTERISTIC_UUID_1);
     })
     .then(chara => {
