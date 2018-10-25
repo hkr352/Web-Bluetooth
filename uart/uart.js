@@ -41,12 +41,14 @@ function connect () {
         //return service.getCharacteristic(CHARACTERISTIC_UUID_1);
         service.getCharacteristic(CHARACTERISTIC_UUID_1)
             .then(characteristic1 => {
+              alert("BLETX connected");
           //characteristic1.writeValue(new Uint16Array([INTERVAL]))
           characteristic1.startNotifications();
           characteristic1.addEventListener('characteristicvaluechanged',onCharacteristicValueChanged);
         })
         service.getCharacteristic(CHARACTERISTIC_UUID_2)
             .then(characteristic2 => {
+              alert("BLERX connected");
           characteristic=chara;
           //characteristic.writeValue(new Uint16Array([INTERVAL]))
         })
