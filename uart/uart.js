@@ -10,6 +10,7 @@ const UART_RX_SERVICE_CHARACTERISTICS ='6e400003-b5a3-f393-e0a9-e50e24dcca9e';
 
 const SERVICE_UUID = UART_SERVICE;
 const CHARACTERISTIC_UUID_1 = UART_TX_SERVICE_CHARACTERISTICS;
+const CHARACTERISTIC_UUID_2 = UART_RX_SERVICE_CHARACTERISTICS;
 
 let characteristic;
 let connectDevice;
@@ -24,23 +25,40 @@ function connect () {
     .then(device => {
       connectDevice = device;
       console.log('device', device);
-      alert("device error");
       return device.gatt.connect();
     })
     .then(server => {
-      alert("server error");
-        return server.getPrimaryService(SERVICE_UUID);
+        return server.getPrimaryService(SERVICE_UUID
+        /*
+        server.getPrimaryService(SERVICE_UUID)
+          .then(service => {
+          // start service is here
+          startService(service, CHARACTERISTIC_UUID) // start service
+        })*/
+
     })
     .then(service => {
-        alert("service error");
-        return service.getCharacteristic(CHARACTERISTIC_UUID_1);
+        //return service.getCharacteristic(CHARACTERISTIC_UUID_1);
+        service.getCharacteristic(CHARACTERISTIC_UUID_1)
+            .then(characteristic1 => {
+          //characteristic1.writeValue(new Uint16Array([INTERVAL]))
+          characteristic1.startNotifications();
+          characteristic1.addEventListener('characteristicvaluechanged',onCharacteristicValueChanged);
+        })
+        service.getCharacteristic(CHARACTERISTIC_UUID_2)
+            .then(characteristic2 => {
+          characteristic=chara;
+          //characteristic.writeValue(new Uint16Array([INTERVAL]))
+        })
     })
+    /*
     .then(chara => {
         alert("BLE connected");
         characteristic=chara;
         characteristic.startNotifications();
         characteristic.addEventListener('characteristicvaluechanged',onCharacteristicValueChanged);
     })
+    */
     .catch(error => {
         alert("BLE error");
     });
